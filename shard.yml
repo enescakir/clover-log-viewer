@@ -1,0 +1,9 @@
+name: clover-log-viewer
+version: 0.1.0
+
+targets:
+  clv:
+    main: src/main.cr
+
+
+crystal: '>= 1.0.0'
