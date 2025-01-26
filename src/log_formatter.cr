@@ -58,7 +58,10 @@ class LogFormatter
     elsif log.has_key?("lack_of_capacity")
       message = "No capacity left: #{["location", "family", "arch"].map { |k| log["lack_of_capacity"][k] }.join("-")}"
     else
-      message = "#{log["message"]}\n  #{"#{log.reject("time", "message", "thread")}".colorize.dim}"
+      message = "#{log["message"]}\n"
+      if (details = log.reject("time", "message", "thread")) && !details.empty?
+        message = "#{message} #{details.colorize.dim}"
+      end
     end
 
     timestamp = log["time"].to_s.sub(/ \+.*$/, "")
